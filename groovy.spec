@@ -4,7 +4,7 @@ Version:	2.3.8
 Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/Java
-Source0:	https://dl.bintray.com/groovy/maven/%{name}-binary-%{version}.zip
+Source0:	https://dl.bintray.com/groovy/maven/%{name}-binary-%{version}.zip?direct&/%{name}-binary-%{version}.zip
 # Source0-md5:	367509550c0d21b2cf4066c6d59a4a13
 URL:		http://groovy.codehaus.org/
 Requires:	jdk
