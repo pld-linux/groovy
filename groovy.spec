@@ -1,11 +1,11 @@
 Summary:	Dynamic language for the Java Platform
 Name:		groovy
-Version:	2.4.5
+Version:	2.4.6
 Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/Java
 Source0:	https://dl.bintray.com/groovy/maven/apache-%{name}-binary-%{version}.zip
-# Source0-md5:	fc57ff9024e62a3699b5d8ccb6bc2787
+# Source0-md5:	82d265186a651edb53bf187487966b92
 URL:		http://groovy-lang.org/
 Requires:	jdk
 BuildArch:	noarch
