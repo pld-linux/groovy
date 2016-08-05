@@ -1,13 +1,21 @@
+#
+# Conditional build:
+%bcond_without	indy	# use libraries without invokedynamic support (compatible with JRE 1.5+)
+#
 Summary:	Dynamic language for the Java Platform
 Name:		groovy
-Version:	2.4.6
+Version:	2.4.7
 Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/Java
 Source0:	https://dl.bintray.com/groovy/maven/apache-%{name}-binary-%{version}.zip
-# Source0-md5:	82d265186a651edb53bf187487966b92
+# Source0-md5:	40ae843dfbf045366f351aed3d5c1a3b
 URL:		http://groovy-lang.org/
-Requires:	jdk
+%if %{with indy}
+Requires:	jdk >= 1.7
+%else
+Requires:	jdk >= 1.5
+%endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -29,7 +37,15 @@ for b in grape groovy groovyConsole groovyc groovydoc groovysh java2groovy start
 done
 
 install -d $RPM_BUILD_ROOT
-cp -a bin conf indy lib $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a bin conf lib $RPM_BUILD_ROOT%{_datadir}/%{name}
+
+%if %{with indy}
+for f in indy/*-indy.jar; do
+	targetname=$(basename $f -indy.jar).jar
+	%{__cp} -p $f \
+		$RPM_BUILD_ROOT%{_datadir}/%{name}/lib/$targetname
+done
+%endif
 
 rm $RPM_BUILD_ROOT%{_datadir}/%{name}/bin/*.bat
 
@@ -57,5 +73,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/%{name}/bin/java2groovy
 %attr(755,root,root) %{_datadir}/%{name}/bin/startGroovy
 %{_datadir}/%{name}/conf
-%{_datadir}/%{name}/indy
 %{_datadir}/%{name}/lib
