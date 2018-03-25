@@ -5,7 +5,7 @@
 Summary:	Dynamic language for the Java Platform
 Name:		groovy
 Version:	2.4.14
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Development/Languages/Java
 Source0:	https://dl.bintray.com/groovy/maven/apache-%{name}-binary-%{version}.zip
@@ -18,6 +18,8 @@ Requires:	jdk >= 1.5
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoreq_java		ClassDataVersion
 
 %description
 Groovy is an agile and dynamic language for the Java Virtual Machine,
