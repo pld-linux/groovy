@@ -4,12 +4,12 @@
 #
 Summary:	Dynamic language for the Java Platform
 Name:		groovy
-Version:	2.5.8
+Version:	2.5.9
 Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/Java
 Source0:	https://dl.bintray.com/groovy/maven/apache-%{name}-binary-%{version}.zip
-# Source0-md5:	464fe2c0c8f5568ba71ef094daed5078
+# Source0-md5:	e02536f8635c9994f5d07e19bf26180e
 URL:		http://groovy-lang.org/
 %if %{with indy}
 Requires:	jdk >= 1.7
@@ -30,6 +30,10 @@ anywhere you can use Java.
 
 %prep
 %setup -q
+grep -rl /usr/bin/env bin | xargs sed -i -e '1{
+	s,^#!.*bin/env sh,#!%{__sh},
+	s,^#!.*bin/env bash,#!%{__bash},
+}'
 
 %install
 rm -rf $RPM_BUILD_ROOT
